@@ -1,15 +1,15 @@
 /* From the :root element you can easily change the colors of the design, its size and so on. */
 :root {
-
   /* You can change the font family in the whole design here. (You need to add the font family to the codes.) */
   --font_family: 'Inter', sans-serif;
 
   /* You can change the font size here, is proportional to all texts. */
   --font_size: 16px;
 
-  /* You can change the background color by typing the color code. (If you do not enter a background-image image, the background-color will be active.) */
-  --background_color: #000;
-  --background_image: url("../img/wallpaper.jpg");
+  /* Define the gradient colors for the background animation */
+  --gradient_start: #000;
+  --gradient_mid: #333;
+  --gradient_end: #000;
 
   /* You can change the frame thickness and color of the picture by typing the number of pixels and the color code. */
   --image_border_color: #000;
@@ -48,16 +48,29 @@
 }
 
 /* Basic Codes */
-
 body {
   font: var(--font_size) var(--font_family);
   font-weight: 400;
   line-height: 1.5;
-  background: var(--background_color) var(--background_image) no-repeat center;
+  background: linear-gradient(270deg, var(--gradient_start), var(--gradient_mid), var(--gradient_end));
+  background-size: 600% 600%;
+  animation: gradientAnimation 15s ease infinite;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .flex_column_center {
@@ -143,7 +156,6 @@ body {
 #header_nav_menu_item_3 {
   color: var(--menu_text_color);
 }
-
 
 .header_nav_menu_list {
   padding-top: 1em;
@@ -260,7 +272,7 @@ main {
   }
 
   .main_small_button_item {
-    width: calc(92vw / 2 - 5px);;
+    width: calc(92vw / 2 - 5px);
   }
 
   .main_button_item {
@@ -271,5 +283,4 @@ main {
     width: 92vw;
     text-align: center;
   }
-  
 }
